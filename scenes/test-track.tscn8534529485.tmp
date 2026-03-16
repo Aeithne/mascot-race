@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bb4sekgisw3ck"]
+
+[ext_resource type="Script" uid="uid://d0o60d7duot53" path="res://scenes/camera_pivot.gd" id="1_6i018"]
+[ext_resource type="Script" uid="uid://x2h1b6cnyiht" path="res://addons/virtual_joystick_plus/virtual_joystick_plus.gd" id="1_u5ooa"]
+[ext_resource type="Texture2D" uid="uid://bj5mijew6setj" path="res://addons/virtual_joystick_plus/resources/textures/joystick_texture_5.png" id="2_5htfo"]
+[ext_resource type="Texture2D" uid="uid://ckp0yipi23gk6" path="res://addons/virtual_joystick_plus/resources/textures/stick_texture_5.png" id="3_67ahe"]
+[ext_resource type="Script" uid="uid://uerg7bf8syi4" path="res://scenes/mesh_instance_3d.gd" id="4_5htfo"]
+[ext_resource type="Script" uid="uid://cb1dxna7h2cuq" path="res://scenes/player.gd" id="4_67ahe"]
+[ext_resource type="Texture2D" uid="uid://cjarv0lu23cxp" path="res://assets/Checkerboard_pattern.svg.png" id="6_pn5a4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u5ooa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_67ahe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67ahe"]
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i018"]
+albedo_texture = ExtResource("6_pn5a4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pn5a4"]
+material = SubResource("StandardMaterial3D_6i018")
+size = Vector2(4, 4)
+subdivide_width = 10
+subdivide_depth = 10
+
+[node name="Root" type="Node3D" unique_id=785355012]
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=791938357]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
+script = ExtResource("1_6i018")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="CameraPivot" unique_id=1236615853]
+motion_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/CharacterBody3D" unique_id=1839748300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2793031, 4.830674)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot/CharacterBody3D/Camera3D" unique_id=91250016]
+
+[node name="UI" type="Control" parent="." unique_id=155163551]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="UI" unique_id=1367874077]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(150, 150)
+script = ExtResource("1_u5ooa")
+joystick_texture = ExtResource("2_5htfo")
+stick_texture = ExtResource("3_67ahe")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=294844623 node_paths=PackedStringArray("player_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.131279, 0)
+script = ExtResource("4_67ahe")
+speed = null
+fall_acceleration = null
+player_camera = NodePath("../CameraPivot/CharacterBody3D/Camera3D")
+
+[node name="Pivot" type="Marker3D" parent="CharacterBody3D" unique_id=259618311]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Pivot" unique_id=490333679]
+mesh = SubResource("CapsuleMesh_u5ooa")
+script = ExtResource("4_5htfo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=960277840]
+shape = SubResource("CapsuleShape3D_67ahe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=314567202]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1740170004]
+shape = SubResource("BoxShape3D_67ahe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=5560586]
+mesh = SubResource("PlaneMesh_pn5a4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D" unique_id=419718612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6159058, 0)
+light_energy = 10.0
+light_indirect_energy = 10.0
+omni_range = 18.14
+
+[connection signal="analogic_changed" from="UI/Control" to="CharacterBody3D" method="_on_control_analogic_changed"]

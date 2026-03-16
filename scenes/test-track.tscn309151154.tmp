@@ -24,21 +24,17 @@ size = Vector2(4, 4)
 subdivide_width = 10
 subdivide_depth = 10
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6i018"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_wtjr2"]
-
 [node name="Root" type="Node3D" unique_id=785355012]
 
 [node name="CameraPivot" type="Marker3D" parent="." unique_id=791938357]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="CameraPivot" unique_id=1236615853]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
 motion_mode = 1
 script = ExtResource("2_wtjr2")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/CharacterBody3D" unique_id=1839748300]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2793031, 4.830674)
 current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot/CharacterBody3D/Camera3D" unique_id=91250016]
@@ -73,93 +69,64 @@ script = ExtResource("4_5htfo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=960277840]
 shape = SubResource("CapsuleShape3D_67ahe")
 
-[node name="Terrenos" type="Marker3D" parent="." unique_id=1043372881]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Terrenos" unique_id=314567202]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=314567202]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrenos/StaticBody3D" unique_id=1740170004]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1740170004]
 shape = SubResource("BoxShape3D_67ahe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrenos/StaticBody3D/CollisionShape3D" unique_id=5560586]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=5560586]
 mesh = SubResource("PlaneMesh_pn5a4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Terrenos/StaticBody3D" unique_id=419718612]
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D" unique_id=419718612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6159058, 0)
 light_energy = 10.0
 light_indirect_energy = 10.0
 omni_range = 18.14
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Terrenos" unique_id=1351764542]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1351764542]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -20)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrenos/StaticBody3D2" unique_id=1310633763]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1310633763]
 shape = SubResource("BoxShape3D_67ahe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrenos/StaticBody3D2/CollisionShape3D" unique_id=2064371336]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2/CollisionShape3D" unique_id=2064371336]
 mesh = SubResource("PlaneMesh_pn5a4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Terrenos/StaticBody3D2" unique_id=948047810]
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D2" unique_id=948047810]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6159058, 0)
 light_energy = 10.0
 light_indirect_energy = 10.0
 omni_range = 18.14
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="Terrenos" unique_id=1162020853]
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1162020853]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -40)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrenos/StaticBody3D3" unique_id=738563126]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=738563126]
 shape = SubResource("BoxShape3D_67ahe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrenos/StaticBody3D3/CollisionShape3D" unique_id=1035347091]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3/CollisionShape3D" unique_id=1035347091]
 mesh = SubResource("PlaneMesh_pn5a4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Terrenos/StaticBody3D3" unique_id=427541623]
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D3" unique_id=427541623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6159058, 0)
 light_energy = 10.0
 light_indirect_energy = 10.0
 omni_range = 18.14
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="Terrenos" unique_id=903876857]
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=903876857]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -60)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrenos/StaticBody3D4" unique_id=735725416]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=735725416]
 shape = SubResource("BoxShape3D_67ahe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrenos/StaticBody3D4/CollisionShape3D" unique_id=1894023990]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4/CollisionShape3D" unique_id=1894023990]
 mesh = SubResource("PlaneMesh_pn5a4")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Terrenos/StaticBody3D4" unique_id=1015403226]
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D4" unique_id=1015403226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6159058, 0)
 light_energy = 10.0
 light_indirect_energy = 10.0
 omni_range = 18.14
-
-[node name="Obstaculos" type="Marker3D" parent="." unique_id=1805811014]
-
-[node name="Obstacle" type="StaticBody3D" parent="Obstaculos" unique_id=1685667065]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.8687305, -14.958227)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculos/Obstacle" unique_id=1016875029]
-shape = SubResource("BoxShape3D_6i018")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstaculos/Obstacle/CollisionShape3D" unique_id=1907564864]
-mesh = SubResource("BoxMesh_wtjr2")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Obstaculos/Obstacle" unique_id=1966112569]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3470485, 0, -8.185888)
-shape = SubResource("BoxShape3D_6i018")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstaculos/Obstacle/CollisionShape3D2" unique_id=486853897]
-mesh = SubResource("BoxMesh_wtjr2")
-
-[node name="Obstacle2" type="StaticBody3D" parent="Obstaculos" unique_id=1981260838]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.6076403, 1.8687305, -28.949095)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculos/Obstacle2" unique_id=279933386]
-shape = SubResource("BoxShape3D_6i018")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstaculos/Obstacle2/CollisionShape3D" unique_id=787271321]
-mesh = SubResource("BoxMesh_wtjr2")
 
 [connection signal="analogic_changed" from="UI/Control" to="CharacterBody3D" method="_on_control_analogic_changed"]

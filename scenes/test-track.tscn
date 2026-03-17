@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://uerg7bf8syi4" path="res://scenes/mesh_instance_3d.gd" id="4_5htfo"]
 [ext_resource type="Script" uid="uid://cb1dxna7h2cuq" path="res://scenes/player.gd" id="4_67ahe"]
 [ext_resource type="Texture2D" uid="uid://cjarv0lu23cxp" path="res://assets/Checkerboard_pattern.svg.png" id="6_pn5a4"]
+[ext_resource type="Script" uid="uid://c1iqs223u1ppo" path="res://scenes/moving_object.gd" id="8_wtjr2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ubdlv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u5ooa"]
 
@@ -32,16 +35,25 @@ subdivide_depth = 10
 
 [node name="CameraPivot" type="Marker3D" parent="." unique_id=791938357]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="CameraPivot" unique_id=1236615853]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="CameraPivot" unique_id=1236615853 node_paths=PackedStringArray("active_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
 motion_mode = 1
 script = ExtResource("2_wtjr2")
+active_camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/CharacterBody3D" unique_id=1839748300]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraPivot/CharacterBody3D/Camera3D" unique_id=91250016]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/CharacterBody3D/Camera3D/DirectionalLight3D" unique_id=1085209041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 10, 0, 4, -5)
+mesh = SubResource("BoxMesh_ubdlv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraPivot/CharacterBody3D" unique_id=2053068031]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 5, 0, -0.5, 8.660254, 0, 0.96410155, -6.330127)
+mesh = SubResource("BoxMesh_ubdlv")
 
 [node name="UI" type="Control" parent="." unique_id=155163551]
 layout_mode = 3
@@ -139,6 +151,7 @@ omni_range = 18.14
 
 [node name="Obstacle" type="StaticBody3D" parent="Obstaculos" unique_id=1685667065]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.8687305, -14.958227)
+script = ExtResource("8_wtjr2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculos/Obstacle" unique_id=1016875029]
 shape = SubResource("BoxShape3D_6i018")

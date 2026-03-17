@@ -34,7 +34,7 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
 	
-	player_camera.follow(velocity, position.y + 5.0)
+	player_camera.follow(self, velocity, position.y + 5.0, current_analog.x)
 	deaccelerate(current_analog)
 	#player_camera.position = player_camera.position.lerp(position + camera_distance, delta)
 	#player_camera.rotation = player_camera.rotation.lerp(player_camera.rotation * direction, delta)
@@ -53,6 +53,8 @@ func deaccelerate(analog):
 		f_speed = clamp(f_speed - 0.2, 0, f_speed)
 	if analog.y == 0 and f_speed < 0:
 		f_speed = clamp(f_speed + 0.2, f_speed, 0)
+	if analog.x == 0:
+		player_camera.recenter(self)
 	if analog.x == 0 and t_speed > 0:
 		t_speed = clamp(t_speed - 0.5, 0, t_speed)
 	if analog.x == 0 and t_speed < 0:
